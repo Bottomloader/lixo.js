@@ -1,0 +1,35 @@
+{
+  "name": "lixo.js",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bottomloader/lixo.js.git"
+  },
+  "keywords": [
+    "BDFD",
+    "aoi",
+    "aoi.js",
+    "fs",
+    "bf",
+    "botforge",
+    "forgescript",
+    "bot",
+    "designer",
+    "Discord"
+  ],
+  "author": "Bottomloader",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bottomloader/lixo.js/issues"
+  },
+  "homepage": "https://github.com/Bottomloader/lixo.js#readme",
+  "description": "",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "quick.db": "^9.1.7"
+  }
+}
