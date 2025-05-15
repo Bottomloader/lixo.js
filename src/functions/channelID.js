@@ -11,7 +11,7 @@ module.exports = {
 
             return targetChannel.id
           } catch (e) {
-            return "Error: $channelID couldn't fetch the channel with the reason:" + e;
+            return "Error: $channelID couldn't fetch the channel with the reason: " + e;
           }
         } else if (context.channel) {
           return context.channel.id;
