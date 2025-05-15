@@ -6,7 +6,7 @@ module.exports = {
     takesBrackets: true,
     execute: async (context, args) => {
         const codeToParse = args[0];
-        if (!codeToParse) return "Error: $eval requires Solara code inside the brackets";
+        if (!codeToParse) return "Error: $eval requires Lixo code inside the brackets";
         try {
             const evalResult = await context.client.functionParser.parse(codeToParse, context);
             return evalResult;
