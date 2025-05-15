@@ -10,13 +10,13 @@ module.exports = {
         const error = args[1] || "";
         let input;
         try {  
-          input = await context.client.FunctionParser.parse(text);  
+          input = await context.client.functionParser.parse(text, context);  
         } catch (e) {  
           if (e instanceof StopExecutionError) {  
             return error;  
           }  
         };  
-        if (typeof input == "string" && input.includes("Error: $")) return error  
+        if (typeof input == "string" && input.includes("Error:")) return error  
        return input  
     }  
 };
