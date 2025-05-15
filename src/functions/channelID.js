@@ -5,9 +5,11 @@ module.exports = {
     execute: async (context, args) => {
         if (args[0]) {
           try {
-            const channelId =  args[0];
-            targetChannel = context.client.channels.cache.get(channelId) || await context.client.channels.fetch(channelId);
-            return targetChannel.name;
+            const guild = await context.client.guilds.fetch(context.guild.id);
+            const channels = await guild.channels.fetch();
+            const targetChannel = channels.find(c => c.name === args[0]);
+
+            return targetChannel.id
           } catch (e) {
             return "Error: $channelID couldn't fetch the channel with the reason:" + e;
           }
