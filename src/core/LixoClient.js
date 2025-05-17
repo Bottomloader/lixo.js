@@ -21,7 +21,7 @@ class LixoClient extends Client {
           version = packageJson.version || '';
         }
         if (version.startsWith('1')) console.warn("Alpha version detected, update to version 2 or higher");
-
+        if (version.startsWith('g')) console.warn("Dev version detected. Be careful while using this.");
         let finalIntents;
         if (Array.isArray(userIntents) && userIntents.length > 0) {
             finalIntents = mapIntents(userIntents);
