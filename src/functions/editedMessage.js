@@ -25,18 +25,13 @@ module.exports = {
 
         const pro = msg[property];
 
-        if (pro === undefined) {
-            return `Error: Property '${property}' not found on ${update} message for $editedMessage`;
-        }
 
         if (index) {
             const i = parseInt(index, 10);
             if (isNaN(i) || i < 1) {
                 return "Error: Index must be a positive number";
             }
-            if (typeof pro !== "string") {
-                return `Error: Property '${property}' is not a string`;
-            }
+
             const rindex = pro.split(/\s+/);
             return rindex[i - 1] || "";
         } else {
