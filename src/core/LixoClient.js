@@ -42,11 +42,18 @@ class LixoClient extends Client {
             finalPartials = [...DEFAULT_PARTIALS];
         }
 
-        super({
-            intents: finalIntents,
-            partials: finalPartials,
-            ...djsOptions
-        });
+        const cacheOptions = {
+          messageCacheMaxSize: 200,
+          messageCacheLifetime: 300,
+          messageSweepInterval: 120
+        };
+        const finalDjsOptions = {
+          intents: finalIntents,
+          partials: finalPartials,
+          ...cacheOptions,
+          ...djsOptions
+        };
+        super(finalDjsOptions);
 
         this.lixoOptions = {
             prefix: DEFAULT_PREFIX,
