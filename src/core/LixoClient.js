@@ -3,7 +3,6 @@ const { QuickDB } = require("quick.db");
 const EventEmitter = require('events');
 const path = require('path');
 const fs = require('fs');
-const path = require('path');
 
 const CommandHandler = require('../handlers/CommandHandler');
 const FunctionParser = require('../handlers/FunctionParser');
