@@ -115,7 +115,7 @@ class LixoClient extends Client {
         const nameLower = commandData.name.toLowerCase();
         const type = commandData.type || COMMAND_TYPES.BOTH;
 
-        const key = (type === COMMAND_TYPES.BUTTON || type === COMMAND_TYPES.SELECT_MENU || type === COMMAND_TYPES.MODAL_SUBMIT)
+        const key = (type === COMMAND_TYPES.SELECT_MENU || type === COMMAND_TYPES.MODAL_SUBMIT)
             ? commandData.name
             : nameLower;
 
@@ -425,7 +425,7 @@ class LixoClient extends Client {
                 commandIdentifier = interaction.commandName.toLowerCase();
                 expectedTypes = INTERACTION_COMMAND_TYPES;
             } else if (interaction.isButton()) {
-                commandIdentifier = interaction.customId;
+                commandIdentifier = "button";
                 expectedTypes = [COMMAND_TYPES.BUTTON];
             } else if (interaction.isAnySelectMenu()) {
                 commandIdentifier = interaction.customId;
