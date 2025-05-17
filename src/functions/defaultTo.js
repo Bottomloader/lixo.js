@@ -5,5 +5,6 @@ module.exports = {
     execute: async (context, args) => {
         if (!args[1]) return "Error: $defaultTo expected to get text and defaultTo args.";
         if (args[0] == "" || args[0] == null || args[0] == undefined) return args[1];
+        return args[0];
     }
 };
