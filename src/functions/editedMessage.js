@@ -26,7 +26,7 @@ module.exports = {
         const pro = msg[property];
 
         if (pro === undefined) {
-            return `Error: Property '${property}' not found on ${update} message`;
+            return `Error: Property '${property}' not found on ${update} message for $editedMessage`;
         }
 
         if (index) {
