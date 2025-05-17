@@ -3,6 +3,7 @@ const { QuickDB } = require("quick.db");
 const EventEmitter = require('events');
 const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
 const CommandHandler = require('../handlers/CommandHandler');
 const FunctionParser = require('../handlers/FunctionParser');
@@ -13,6 +14,14 @@ const { loadFiles, requireUncached } = require('../utils/fileUtils');
 class LixoClient extends Client {
     constructor(options = {}) {
         const { lixo = {}, intents: userIntents, partials: userPartials, ...djsOptions } = options;
+        
+        let version;
+        const packageJsonPath = path.join(__dirname, '..', '..', 'package.json');
+        if (fs.existsSync(packageJsonPath)) {
+          const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+          version = packageJson.version || '';
+        }
+        if (version.startsWith('1')) console.warn("Alpha version detected, update to version 2 or higher");
 
         let finalIntents;
         if (Array.isArray(userIntents) && userIntents.length > 0) {
