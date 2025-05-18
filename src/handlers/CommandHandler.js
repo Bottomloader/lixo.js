@@ -240,6 +240,48 @@ function buildResponsePayload(context) {
         payload.content = finalResult;
     }
 
+    if (context.container && context.container.length > 0) {
+    payload.container = [];
+
+    for (const containerData of context.container) {
+            if (!containerData || typeof containerData !== 'object') {
+                console.error("CommandHandler Response: Skipping invalid container data:", containerData);
+                continue;
+            }
+
+            try {
+                let containerToAdd;
+
+                if (typeof containerData.toJSON === 'function' && containerData.data) {
+                    containerToAdd = containerData;
+                } else if (containerData.type) {
+                    switch (containerData.type) {
+                        case ComponentType.TextDisplay:
+                            containerToAdd = new TextDisplay(containerData);
+                            break;
+                        default:
+                            console.warn(`CommandHandler Response: Unsupported component type ${containerData.type} found.`);
+                            containerToAdd = null;
+                    }
+                } else {
+                    console.error("CommandHandler Response: Container data lacks 'type' or is not a builder:", containerData);
+                    containerToAdd = null;
+                }
+
+                if (containerToAdd) {
+                    payload.container.push(containerToAdd);
+                }
+
+            } catch (e) {
+                console.error(`CommandHandler Response: Error processing container. Data: ${JSON.stringify(containerData)}. Error:`, e);
+           }
+       }
+
+       if (payload.container.length === 0) {
+           delete payload.container;
+       }
+    }
+
     if (context.embedData && Object.keys(context.embedData).length > 0) {
         try {
             const embed = new EmbedBuilder(context.embedData);
