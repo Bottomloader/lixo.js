@@ -3,7 +3,8 @@ const {
     BaseGuildTextChannel, BaseGuildVoiceChannel, ForumChannel, StageChannel, ThreadChannel, CategoryChannel,
     Guild, VoiceState, Typing, Presence, MessageReaction, GuildBan, Invite,
     ComponentType, ButtonBuilder, StringSelectMenuBuilder, UserSelectMenuBuilder, RoleSelectMenuBuilder,
-    MentionableSelectMenuBuilder, ChannelSelectMenuBuilder, ModalBuilder
+    MentionableSelectMenuBuilder, ChannelSelectMenuBuilder, ModalBuilder,
+    TextDisplayBuilder, ContainerBuilder
 } = require('discord.js');
 const StopExecutionError = require('../errors/StopExecutionError');
 const { COMMAND_TYPES } = require('../utils/constants'); 
@@ -31,6 +32,7 @@ function createBaseExecutionContext(client, commandOrEvent, context, eventArgs, 
         localVariables: new Map(),
         embedData: {},
         components: [],
+        container: [],
         attachments: [],
         modal: null,
         auditLogReason: null,
@@ -257,7 +259,7 @@ function buildResponsePayload(context) {
                 } else if (containerData.type) {
                     switch (containerData.type) {
                         case ComponentType.TextDisplay:
-                            containerToAdd = new TextDisplay(containerData);
+                            containerToAdd = new TextDisplayBuilder(containerData);
                             break;
                         default:
                             console.warn(`CommandHandler Response: Unsupported component type ${containerData.type} found.`);
