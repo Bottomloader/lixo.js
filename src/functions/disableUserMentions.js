@@ -1,6 +1,6 @@
 module.exports = {
-    name: "$c",
-    description: "Ignores the content within the brackets. Used for adding comments to code.",
+    name: "$disableUserMentions",
+    description: "Doesn't send a notification when pinging users.",
     takesBrackets: true,
     execute: async (context, args) => {
         payload.allowedMentions.users = []
