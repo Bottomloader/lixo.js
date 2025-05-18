@@ -249,9 +249,15 @@ class LixoClient extends Client {
         try {
             console.log(`Refreshing ${this.slashCommandsData.length} application (/) commands.`);
             const data = await rest.put(
-                Routes.applicationCommands(clientId),
-                { body: this.slashCommandsData },
-            );
+              Routes.applicationCommands(clientId),
+              {
+                  body: this.slashCommandsData.map(command => ({
+                      ...command,
+                      contexts: [0, 1, 2],
+                      integrationTypes: [0, 1],
+                  })),
+              }
+          );
             console.log(`Successfully reloaded ${Array.isArray(data) ? data.length : 'unknown number of'} application (/) commands.`);
         } catch (error) {
             console.error("Failed to register application commands:", error.response?.data || error.message || error);
