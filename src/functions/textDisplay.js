@@ -11,7 +11,8 @@ module.exports = {
         payload.flags = MessageFlags.IsComponentsV2
         const c = context.components.at(-1)
         const text = new TextDisplayBuilder().setContent(args[0])
-        if (c instanceof ContainerBuilder) c.addTextDisplayComponents(text)
+        if (context.container.isInside(ComponentType.Section)) context.component.section?.addTextDisplayComponents(text)
+        else if (context.components.isInside(ComponentType.Container) && c instanceof ContainerBuilder) c.addTextDisplayComponents(text)
         else context.components.push(text)
         return "";
     }
