@@ -274,7 +274,7 @@ function buildResponsePayload(context) {
                 if (typeof componentData.toJSON === 'function' && componentData.data) {
                     componentToAdd = componentData;
                 }
-                else if (componentData instance of ContainerBuilder {
+                else if (componentData instanceof ContainerBuilder {
                     componentToAdd = new ContainerBuilder(componentData); 
                     payload.flags = MessageFlags.IsComponentsV2; 
                 } else if (componentData.type) {
