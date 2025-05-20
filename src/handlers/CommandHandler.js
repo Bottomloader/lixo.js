@@ -274,7 +274,10 @@ function buildResponsePayload(context) {
                 if (typeof componentData.toJSON === 'function' && componentData.data) {
                     componentToAdd = componentData;
                 }
-                else if (componentData.type) {
+                else if (componentData instance of ContainerBuilder {
+                    componentToAdd = new ContainerBuilder(componentData); 
+                    payload.flags = MessageFlags.IsComponentsV2; 
+                } else if (componentData.type) {
                     switch (componentData.type) {
                         case ComponentType.Button: componentToAdd = new ButtonBuilder(componentData); break;
                         case ComponentType.StringSelect: componentToAdd = new StringSelectMenuBuilder(componentData); break;
@@ -282,7 +285,6 @@ function buildResponsePayload(context) {
                         case ComponentType.RoleSelect: componentToAdd = new RoleSelectMenuBuilder(componentData); break;
                         case ComponentType.MentionableSelect: componentToAdd = new MentionableSelectMenuBuilder(componentData); break;
                         case ComponentType.ChannelSelect: componentToAdd = new ChannelSelectMenuBuilder(componentData); break;
-                        case ComponentType.Container: componentToAdd = new ContainerBuilder(componentData); payload.flags = MessageFlags.IsComponentsV2; break;
                         case ComponentType.TextDisplay: componentToAdd = new TextDisplayBuilder(componentData); payload.flags = MessageFlags.IsComponentsV2; break;
                         default: console.warn(`CommandHandler Response: Unsupported component type ${componentData.type} found.`); componentToAdd = null;
                     }
