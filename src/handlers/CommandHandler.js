@@ -303,6 +303,7 @@ function buildResponsePayload(context) {
                   }
                   payload.components.push(componentToAdd.toJSON());
                   payload.flags = MessageFlags.IsComponentsV2;
+                  payload.content = null;
                 }
               }
             } catch (e) {
