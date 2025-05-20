@@ -7,7 +7,7 @@ module.exports = {
     execute: async (context, args) => {
         context.components = context.components || [];
         context.checks = context.checks || {};
-        if (context.checks.compv2? === true) return console.warn("Error: cannot create container inside of a continer");
+        if (context.checks?.compv2 === true) return console.warn("Error: cannot create container inside of a continer");
         context.checks.compv2 = true;
         if (context.checks.compv2 == true) return "Error: cannot create container inside of a continer"
         const payload = {};
