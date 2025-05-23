@@ -3,7 +3,6 @@
   "version": "0.1.3",
   "main": "dist/index.js",
   "scripts": {
-    "docgen": "tsc && typedoc src/index.ts && node dist/docgen",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
